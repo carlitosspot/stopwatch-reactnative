@@ -2,6 +2,7 @@ var React = require('react-native');
 var {
     Text,
     View,
+    TouchableHighlight,
     AppRegistry,
     StyleSheet
     } = React;
@@ -15,6 +16,7 @@ var StopWatch = React.createClass({
                         00:00.00
                     </Text>
                 </View>
+
                 <View style={[styles.buttonWrapper, this.border('green')]}>
                     {this.startStopButton()}
                     {this.lapButton()}
@@ -29,14 +31,17 @@ var StopWatch = React.createClass({
         </View>
     },
     startStopButton: function(){
-        return  <View>
-            <Text>
-                Start
-            </Text>
-        </View>
+        //return (<View><Text>Start</Text></View>);
+        return <TouchableHighlight underlayColor="gray" onPress={this.handleStartPress}>
+            <View>
+                <Text>
+                    Start
+                </Text>
+            </View>
+        </TouchableHighlight>;
     },
     lapButton: function(){
-        return    <View>
+        return <View>
             <Text>
                 Lap
             </Text>
@@ -47,6 +52,9 @@ var StopWatch = React.createClass({
             borderColor: color,
             borderWidth: 4,
         }
+    },
+    handleStartPress: function(){
+        console.log('pressed');
     }
 });
 
@@ -76,3 +84,4 @@ var styles = StyleSheet.create({
 });
 
 AppRegistry.registerComponent('stopwatch', () => StopWatch);
+
